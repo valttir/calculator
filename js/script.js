@@ -1,13 +1,13 @@
 let displayValue = "";
-let a;
-let operator;
-let b;
+let storedValue = "";
+let operator =  "+";
 
 const numbersDisplay = document.querySelector("#numbers");
 const clearButton = document.querySelector("#clear");
 const deleteButton = document.querySelector("#delete");
 const numButtons = document.querySelectorAll(".num");
 const opButtons = document.querySelectorAll(".op")
+const equalsButton = document.querySelector("#equals");
 
 clearButton.addEventListener("click", () => {
     displayValue = "";
@@ -26,12 +26,14 @@ for (let i = 0; i < numButtons.length; i++) {
 }
 
 for (let i = 0; i < opButtons.length; i++) {
-    opButtons[i].addEventListener("click", () => {})
+    opButtons[i].addEventListener("click", () => {
+        clickOpButton(opButtons[i].textContent)
+    })
 }
 
-
-
-
+equalsButton.addEventListener("click", () => {
+    operate();
+})
 
 function clickNumButton(num) {
     if (displayValue.length <= 10) {
@@ -47,35 +49,49 @@ function clickNumButton(num) {
     }
 }
 
+function clickOpButton(op) {
+    storedValue = displayValue;
+    operator = op;
+    displayValue = "";
+}
+
 function add(a, b) {
-    return a + b;
+    storedValue = Number(a) + Number(b);
+    storedValue = storedValue.toString()
+    numbersDisplay.textContent = storedValue
 }
 
 function subtract(a, b) {
-    return a - b;
+    storedValue = Number(a) - Number(b);
+    storedValue = storedValue.toString()
+    numbersDisplay.textContent = storedValue
 }
 
 function multiply(a, b) {
-    return a * b;
+    storedValue = Number(a) * Number(b);
+    storedValue = storedValue.toString()
+    numbersDisplay.textContent = storedValue
 }
 
 function divide(a, b) {
-    return a / b;
+    storedValue = Number(a) / Number(b);
+    storedValue = storedValue.toString()
+    numbersDisplay.textContent = storedValue
 }
 
-function operate(a, operator, b) {
+function operate() {
     switch (operator) {
         case "+":
-            add(a, b);
+            add(storedValue, displayValue);
             break;
         case "-":
-            subtract(a, b);
+            subtract(storedValue, displayValue);
             break;
-        case "*":
-            multiply(a, b);
+        case "x":
+            multiply(storedValue, displayValue);
             break;
         case "/":
-            divide(a, b);
+            divide(storedValue, displayValue);
             break;
     }
 }
