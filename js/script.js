@@ -9,14 +9,20 @@ const deleteButton = document.querySelector("#delete");
 const numButtons = document.querySelectorAll(".num");
 const opButtons = document.querySelectorAll(".op")
 
-
 for (let i = 0; i < numButtons.length; i++) {
     numButtons[i].addEventListener("click", () => {
         clickNumButton(numButtons[i].textContent)
     })
 }
 
+for (let i = 0; i < opButtons.length; i++) {
+    opButtons[i].addEventListener("click", () => {})
+}
 
+clearButton.addEventListener("click", () => {
+    displayValue = "";
+    numbersDisplay.textContent = displayValue;
+})
 
 function clickNumButton(num) {
     if (displayValue.length <= 10) {
