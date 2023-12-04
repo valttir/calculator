@@ -1,6 +1,7 @@
 let firstNumber = null;
 let operator = null;
 let secondNumber = null;
+let cleared = true;
 let displayValue = "0";
 
 const numbersDisplay = document.querySelector("#numbers");
