@@ -83,6 +83,7 @@ function evaluate() {
 
 function handleResult (result) {
     if (String(result).includes('.')) {
+        // TODO: variable rounding
         return Math.round(result * 1000) / 1000;
     } else if (String(result).length > 10) {
         shouldResetScreen = true;
