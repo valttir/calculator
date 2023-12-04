@@ -1,98 +1,107 @@
+let firstNumber = null;
+let operator = null;
+let secondNumber = null;
 let displayValue = "";
-let storedValue = "";
-let operator =  "+";
+let numButtonClicked = false;
+let opButtonClicked = false;
+let equalsButtonClicked = false;
 
 const numbersDisplay = document.querySelector("#numbers");
-const clearButton = document.querySelector("#clear");
-const deleteButton = document.querySelector("#delete");
-const numButtons = document.querySelectorAll(".num");
-const opButtons = document.querySelectorAll(".op")
-const equalsButton = document.querySelector("#equals");
 
+const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", () => {
+    firstNumber = null;
+    operator = null;
+    secondNumber = null;
     displayValue = "";
+    opButtonClicked = false;
+    equalsButtonClicked = false;
+    numButtonClicked = false;
     numbersDisplay.textContent = displayValue;
 })
 
+const deleteButton = document.querySelector("#delete");
 deleteButton.addEventListener("click", () => {
+    displayValue = numbersDisplay.textContent;
     displayValue = displayValue.slice(0, -1);
     numbersDisplay.textContent = displayValue;
 })
 
+const numButtons = document.querySelectorAll(".num");
 for (let i = 0; i < numButtons.length; i++) {
     numButtons[i].addEventListener("click", () => {
-        clickNumButton(numButtons[i].textContent)
+        clickNumButton(numButtons[i].textContent);
     })
 }
 
+const opButtons = document.querySelectorAll(".op")
 for (let i = 0; i < opButtons.length; i++) {
     opButtons[i].addEventListener("click", () => {
-        clickOpButton(opButtons[i].textContent)
+        clickOpButton(opButtons[i].textContent);
     })
 }
 
+const equalsButton = document.querySelector("#equals");
 equalsButton.addEventListener("click", () => {
-    operate();
+    clickEqualsButton();
 })
 
 function clickNumButton(num) {
+    displayValue = numbersDisplay.textContent;
     if (displayValue.length <= 10) {
         if (num === ".") {
             if (!displayValue.includes(".")) {
                 displayValue += num;
-                numbersDisplay.textContent = displayValue;
             }
         } else {
             displayValue += num;
-            numbersDisplay.textContent = displayValue;
         }
     }
+    numbersDisplay.textContent = displayValue;
+    numButtonClicked = true;
+    opButtonClicked = false;
+    equalsButtonClicked = false;
 }
 
 function clickOpButton(op) {
-    storedValue = displayValue;
-    operator = op;
-    displayValue = "";
+    displayValue = numbersDisplay.textContent;
+    numButtonClicked = false;
+    opButtonClicked = true;
+    equalsButtonClicked = false;
+}
+
+function clickEqualsButton() {
+    displayValue = numbersDisplay.textContent;
+    numButtonClicked = false;
+    opButtonClicked = false;
+    equalsButtonClicked = true;
 }
 
 function add(a, b) {
-    storedValue = Number(a) + Number(b);
-    storedValue = storedValue.toString()
-    numbersDisplay.textContent = storedValue
+    return Number(a) + Number(b);
 }
 
 function subtract(a, b) {
-    storedValue = Number(a) - Number(b);
-    storedValue = storedValue.toString()
-    numbersDisplay.textContent = storedValue
+    return Number(a) - Number(b);
 }
 
 function multiply(a, b) {
-    storedValue = Number(a) * Number(b);
-    storedValue = storedValue.toString()
-    numbersDisplay.textContent = storedValue
+    return Number(a) * Number(b);
 }
 
 function divide(a, b) {
-    storedValue = Number(a) / Number(b);
-    storedValue = storedValue.toString()
-    numbersDisplay.textContent = storedValue
+    return Number(a) / Number(b);
 }
 
-function operate() {
-    switch (operator) {
+function operate(a, op, b) {
+    switch (op) {
         case "+":
-            add(storedValue, displayValue);
-            break;
+            return add(a, b);
         case "-":
-            subtract(storedValue, displayValue);
-            break;
+            return subtract(a, b);
         case "x":
-            multiply(storedValue, displayValue);
-            break;
+            return multiply(a, b);
         case "/":
-            divide(storedValue, displayValue);
-            break;
+            return divide(a, b);
     }
 }
-
