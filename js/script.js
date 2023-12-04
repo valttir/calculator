@@ -1,22 +1,14 @@
 let firstNumber = null;
 let operator = null;
 let secondNumber = null;
-let displayValue = "";
-let numButtonClicked = false;
-let opButtonClicked = false;
-let equalsButtonClicked = false;
+let displayValue = "0";
 
 const numbersDisplay = document.querySelector("#numbers");
 
 const clearButton = document.querySelector("#clear");
 clearButton.addEventListener("click", () => {
-    firstNumber = null;
-    operator = null;
-    secondNumber = null;
-    displayValue = "";
-    opButtonClicked = false;
-    equalsButtonClicked = false;
-    numButtonClicked = false;
+    displayValue = "0";
+    cleared = true;
     numbersDisplay.textContent = displayValue;
 })
 
@@ -24,6 +16,10 @@ const deleteButton = document.querySelector("#delete");
 deleteButton.addEventListener("click", () => {
     displayValue = numbersDisplay.textContent;
     displayValue = displayValue.slice(0, -1);
+    if (displayValue.length < 1) {
+        displayValue = 0;
+        cleared = true;
+    }
     numbersDisplay.textContent = displayValue;
 })
 
@@ -48,6 +44,9 @@ equalsButton.addEventListener("click", () => {
 
 function clickNumButton(num) {
     displayValue = numbersDisplay.textContent;
+    if (cleared === true) {
+        displayValue = "";
+    }
     if (displayValue.length <= 10) {
         if (num === ".") {
             if (!displayValue.includes(".")) {
@@ -58,23 +57,14 @@ function clickNumButton(num) {
         }
     }
     numbersDisplay.textContent = displayValue;
-    numButtonClicked = true;
-    opButtonClicked = false;
-    equalsButtonClicked = false;
 }
 
 function clickOpButton(op) {
-    displayValue = numbersDisplay.textContent;
-    numButtonClicked = false;
-    opButtonClicked = true;
-    equalsButtonClicked = false;
+
 }
 
 function clickEqualsButton() {
-    displayValue = numbersDisplay.textContent;
-    numButtonClicked = false;
-    opButtonClicked = false;
-    equalsButtonClicked = true;
+
 }
 
 function add(a, b) {
