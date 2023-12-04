@@ -1,70 +1,61 @@
-let firstNumber = null;
-let operator = null;
-let secondNumber = null;
-let cleared = true;
-let displayValue = "0";
+let firstOperand = '';
+let secondOperand = '';
+let currentOperation = null;
 
-const numbersDisplay = document.querySelector("#numbers");
-
+const display = document.querySelector("#display");
 const clearButton = document.querySelector("#clear");
-clearButton.addEventListener("click", () => {
-    displayValue = "0";
-    cleared = true;
-    numbersDisplay.textContent = displayValue;
-})
-
 const deleteButton = document.querySelector("#delete");
-deleteButton.addEventListener("click", () => {
-    displayValue = numbersDisplay.textContent;
-    displayValue = displayValue.slice(0, -1);
-    if (displayValue.length < 1) {
-        displayValue = 0;
-        cleared = true;
-    }
-    numbersDisplay.textContent = displayValue;
-})
-
-const numButtons = document.querySelectorAll(".num");
-for (let i = 0; i < numButtons.length; i++) {
-    numButtons[i].addEventListener("click", () => {
-        clickNumButton(numButtons[i].textContent);
-    })
-}
-
-const opButtons = document.querySelectorAll(".op")
-for (let i = 0; i < opButtons.length; i++) {
-    opButtons[i].addEventListener("click", () => {
-        clickOpButton(opButtons[i].textContent);
-    })
-}
-
 const equalsButton = document.querySelector("#equals");
-equalsButton.addEventListener("click", () => {
-    clickEqualsButton();
-})
+const pointButton = document.querySelector("#point");
+const numberButtons = document.querySelectorAll(".num");
+const operatorButtons = document.querySelectorAll(".op")
 
-function clickNumButton(num) {
-    displayValue = numbersDisplay.textContent;
-    if (cleared === true) {
-        displayValue = "";
-    }
-    if (displayValue.length <= 10) {
-        if (num === ".") {
-            if (!displayValue.includes(".")) {
-                displayValue += num;
-            }
-        } else {
-            displayValue += num;
-        }
-    }
-    numbersDisplay.textContent = displayValue;
+clearButton.addEventListener("click", clear);
+deleteButton.addEventListener("click", deleteNumber);
+equalsButton.addEventListener("click", evaluate);
+pointButton.addEventListener("click", appendPoint);
+
+numberButtons.forEach((button) =>
+    button.addEventListener('click', () => 
+    appendNumber(button.textContent))
+)
+
+operatorButtons.forEach((button) =>
+    button.addEventListener('click', () =>
+    setOperator(button.textContent))
+)
+
+function clear() {
+    display.textContent = '0';
+    firstOperand = '';
+    secondOperand = '';
+    currentOperation = null;
 }
 
-function clickOpButton(op) {
+function deleteNumber() {
+    display.textContent = display.textContent.slice(0, -1);
+    if (display.textContent.length < 1) {
+        display.textContent = '0';
+    }
+}
+
+function appendNumber(number) {
+    if (display.textContent.length === 10) return;
+    if (display.textContent === '0') display.textContent = '';
+    display.textContent += number;
+}
+
+function appendPoint() {
+    if (display.textContent.length === 10) return;
+    if (display.textContent.includes('.')) return;
+    display.textContent += '.';
+}
+
+function setOperator(operator) {
 
 }
 
-function clickEqualsButton() {
+function evaluate() {
 
 }
 
