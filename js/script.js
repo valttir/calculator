@@ -1,6 +1,7 @@
 let firstOperand = '';
 let secondOperand = '';
-let currentOperation = null;
+let currentOperator = null;
+let shouldResetScreen = false;
 
 const display = document.querySelector("#display");
 const clearButton = document.querySelector("#clear");
@@ -40,50 +41,85 @@ function deleteNumber() {
 }
 
 function appendNumber(number) {
+    if (display.textContent === '0' || shouldResetScreen) {
+        resetScreen();
+    };
     if (display.textContent.length === 10) return;
-    if (display.textContent === '0') display.textContent = '';
     display.textContent += number;
 }
 
+function resetScreen() {
+    display.textContent = ''
+    shouldResetScreen = false
+  }
+
 function appendPoint() {
+    if (shouldResetScreen) resetScreen()
     if (display.textContent.length === 10) return;
     if (display.textContent.includes('.')) return;
     display.textContent += '.';
 }
 
 function setOperator(operator) {
-
+    if (currentOperator !== null) evaluate();
+    firstOperand = display.textContent;
+    currentOperator = operator;
+    shouldResetScreen = true;
 }
 
 function evaluate() {
-
+    if (currentOperator === null || shouldResetScreen) return;
+    if (currentOperator === '/' && display.textContent === '0') {
+        shouldResetScreen = true;
+    }
+    secondOperand = display.textContent;
+    let result =
+    operate(firstOperand, currentOperator, secondOperand);
+    result = handleResult(result);
+    console.log(result);
+    display.textContent = result;
+    currentOperator = null;
 }
 
-function add(a, b) {
-    return Number(a) + Number(b);
+function handleResult (result) {
+    if (String(result).includes('.')) {
+        return Math.round(result * 1000) / 1000;
+    } else if (String(result).length > 10) {
+        shouldResetScreen = true;
+        return "overflow";
+    } else {
+        return result;
+    }
 }
 
-function subtract(a, b) {
-    return Number(a) - Number(b);
-}
-
-function multiply(a, b) {
-    return Number(a) * Number(b);
-}
-
-function divide(a, b) {
-    return Number(a) / Number(b);
-}
-
-function operate(a, op, b) {
-    switch (op) {
-        case "+":
+function operate(a, operator, b) {
+    a = Number(a);
+    b = Number(b);
+    switch (operator) {
+        case '+':
             return add(a, b);
-        case "-":
+        case '-':
             return subtract(a, b);
-        case "x":
+        case 'x':
             return multiply(a, b);
-        case "/":
+        case '/':
             return divide(a, b);
     }
 }
+
+function add(a, b) {
+    return a + b;
+}
+
+function subtract(a, b) {
+    return a - b;
+}
+
+function multiply(a, b) {
+    return a * b;
+}
+
+function divide(a, b) {
+    return a / b;
+}
+
