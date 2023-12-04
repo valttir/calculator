@@ -7,7 +7,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 850px;
 }
 
 #calculator {
@@ -54,6 +53,5 @@ body {
 }
 
 footer {
-    margin-top: auto;
     text-align: center;
 }
