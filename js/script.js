@@ -79,6 +79,7 @@ function evaluate() {
     console.log(result);
     display.textContent = result;
     currentOperator = null;
+    shouldResetScreen = true;
 }
 
 function handleResult (result) {
