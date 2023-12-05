@@ -16,7 +16,7 @@ body {
     gap: 16px;
     background-color: #292929;
     padding: 16px;
-    border-style: solid;
+    border-style: none;
     border-width: 2px;
     border-radius: 15px;
 }
@@ -33,7 +33,7 @@ body {
     align-items: end;
     height: 64px;
     width: 304px;
-    border-style: solid;
+    border-style: none;
     border-radius: 2px;
     border-color: #616161;
     border-radius: 15px;
@@ -50,11 +50,19 @@ body {
 button {
     color: #d9d9d9;
     background-color: #424242;
-    border-style: solid;
+    border-style: none;
     border-width: 2px;
     border-color: #1c1d21;
     border-radius: 15px;
     font-size: medium;
+}
+
+button:hover {
+    background-color: #383838;
+}
+
+button:active {
+    transform: translateY(2px);
 }
 
 .big-btn {
@@ -71,12 +79,24 @@ button {
     background-color: #374140;
 }
 
+#clear:hover {
+    background-color: #2d3736;
+}
+
 #delete {
     background-color: #37474f;
 }
 
+#delete:hover {
+    background-color: #2d3d45;
+}
+
 .op {
     background-color: #31353d;
+}
+
+.op:hover {
+    background-color: #272b33;
 }
 
 footer {
