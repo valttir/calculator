@@ -69,7 +69,7 @@ function setOperator(operator) {
 
 function evaluate() {
     if (currentOperator === null || shouldResetScreen) return;
-    if (currentOperator === '/' && display.textContent === '0') {
+    if (currentOperator === '÷' && display.textContent === '0') {
         shouldResetScreen = true;
     }
     secondOperand = display.textContent;
@@ -104,7 +104,7 @@ function operate(a, operator, b) {
             return subtract(a, b);
         case 'x':
             return multiply(a, b);
-        case '/':
+        case '÷':
             return divide(a, b);
     }
 }
