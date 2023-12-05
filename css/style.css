@@ -17,7 +17,6 @@ body {
     background-color: #292929;
     padding: 16px;
     border-style: none;
-    border-width: 2px;
     border-radius: 15px;
 }
 
@@ -31,30 +30,25 @@ body {
     display: flex;
     justify-content: end;
     align-items: end;
-    height: 64px;
-    width: 304px;
-    border-style: none;
-    border-radius: 2px;
-    border-color: #616161;
+    height: 66px;
+    width: 312px;
     border-radius: 15px;
-    background-color: black;
     text-align: end;
+    background-color: black;
 }
 
 #display {
+    padding-right: 2px;
     font-size: 50px;
     color: #d9d9d9;
-    padding-right: 2px;
 }
 
 button {
-    color: #d9d9d9;
-    background-color: #424242;
     border-style: none;
-    border-width: 2px;
-    border-color: #1c1d21;
     border-radius: 15px;
     font-size: medium;
+    color: #d9d9d9;
+    background-color: #424242;
 }
 
 button:hover {
@@ -66,13 +60,13 @@ button:active {
 }
 
 .big-btn {
-    height:64px;
-    width: 144px
+    height:66px;
+    width: 146px
 }
 
 .small-btn {
-    height: 64px;
-    width: 64px;
+    height: 66px;
+    width: 66px;
 }
 
 #clear {
@@ -100,7 +94,7 @@ button:active {
 }
 
 footer {
-    text-align: center;
     margin-top: auto;
+    text-align: center;
     color: #d9d9d9;
 }
