@@ -1,6 +1,6 @@
 body {
-    display: flex;
-    flex-direction: column;
+    background-color: #191919;
+    font-family: 'Courier New', Courier, monospace;
 }
 
 #container {
@@ -14,10 +14,11 @@ body {
     flex-direction: column;
     justify-content: space-evenly;
     gap: 16px;
-    background-color: lightgrey;
+    background-color: #292929;
     padding: 16px;
     border-style: solid;
-    border-width: 1px;
+    border-width: 2px;
+    border-radius: 15px;
 }
 
 .row {
@@ -33,18 +34,32 @@ body {
     height: 64px;
     width: 304px;
     border-style: solid;
-    border-width: 1px;
-    background-color: white;
+    border-radius: 2px;
+    border-color: #616161;
+    border-radius: 15px;
+    background-color: black;
     text-align: end;
 }
 
 #display {
-    font-size:55px;
+    font-size: 50px;
+    color: #d9d9d9;
+    padding-right: 2px;
+}
+
+button {
+    color: #d9d9d9;
+    background-color: #424242;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #1c1d21;
+    border-radius: 15px;
+    font-size: medium;
 }
 
 .big-btn {
     height:64px;
-    width: 144px;
+    width: 144px
 }
 
 .small-btn {
@@ -52,6 +67,20 @@ body {
     width: 64px;
 }
 
+#clear {
+    background-color: #374140;
+}
+
+#delete {
+    background-color: #37474f;
+}
+
+.op {
+    background-color: #31353d;
+}
+
 footer {
     text-align: center;
+    margin-top: auto;
+    color: #d9d9d9;
 }
